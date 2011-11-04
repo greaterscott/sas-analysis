@@ -4,6 +4,7 @@ import os.path
 import atsasparse as parse
 import matplotlib.pyplot as plt
 import urllib2
+import numpy as np
 
 #CLASS for deriving Sturhrmann plots
 class Structure:
@@ -148,7 +149,7 @@ for j in range(e):
 
 
 #Linear regressison and plotting
-xdata = n
+xdata = np.array(n)*1e-10
 ydata = t
 polycoeffs = polyfit(xdata, ydata, 2)
 yfit = polyval(polycoeffs, xdata)
@@ -156,9 +157,9 @@ print('Polynomial coefficents: Beta, Alpha, Rc**2')
 print('Radius of gyration at infinite contrast') 
 print sqrt(polycoeffs[2])
 print('Alpha:   ')
-print polycoeffs[1]
+print polycoeffs[1]*1e-16
 print('Beta:    ')
-print polycoeffs[0]
+print polycoeffs[0]*1e-16
 fitvals=whatPDB + '_Stuhrmann_plot_values'
 file = open(fitvals, 'w') 
 file.write(str(polycoeffs))
